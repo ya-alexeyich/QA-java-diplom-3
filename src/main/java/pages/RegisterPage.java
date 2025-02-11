@@ -11,7 +11,6 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 public class RegisterPage {
-    final public static String URL = MainPage.URL + "register";
     private final SelenideElement nameInputField = $(By.xpath("//label[text()='Имя']//following-sibling::input"));
     private final SelenideElement emailInputField = $(By.xpath("//label[text()='Email']//following-sibling::input"));
     private final SelenideElement passwordInputField = $(By.xpath("//input[@type='password']"));
@@ -40,21 +39,12 @@ public class RegisterPage {
     }
 
     @Step("Регистрация юзера")
-    public LoginPage registerUser(UserModel userModel) {
+    public <T> T registerUser(UserModel userModel, Class<T> nextPageClass) {
         inputName(userModel.getName());
         inputEmail(userModel.getEmail());
         inputPassword(userModel.getPassword());
         clickRegister();
-        return Selenide.page(LoginPage.class);
-    }
-
-    @Step("Регистрация с некорректным паролем")
-    public RegisterPage registerUserWithIncorrectPassword(UserModel userModel) {
-        inputName(userModel.getName());
-        inputEmail(userModel.getEmail());
-        inputPassword(userModel.getPassword());
-        clickRegister();
-        return this;
+        return Selenide.page(nextPageClass);
     }
 
     @Step("Клик по кнопке Войти на странице регистрации")

@@ -1,5 +1,7 @@
 import base.ConfigurationWebDriver;
+import base.URL;
 import com.codeborne.selenide.Selenide;
+import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
@@ -10,14 +12,14 @@ import pages.MainPage;
 import static base.ConfigurationWebDriver.setDriver;
 import static org.junit.Assert.assertEquals;
 
-@Epic("Раздел  Конструктор переходы к разделам")
+@Epic("Раздел Конструктор")
 public class NavigationIngredientsTest {
     private MainPage mainPage;
 
     @Before
     public void setUp() {
         setDriver(ConfigurationWebDriver.BROWSER_NAME);
-        Selenide.open("/");
+        Selenide.open(URL.MAIN_PAGE);
         mainPage = new MainPage();
     }
 
@@ -28,6 +30,7 @@ public class NavigationIngredientsTest {
 
     @Test
     @DisplayName("Тест Переход к разделу Булки")
+    @Description("Проверка перехода к разделу Булки в разделе Конструктор")
     public void crossingSectionBunsIsCorrectTest() {
         mainPage.showAvailableFillings();
         mainPage.showAvailableSauces();
@@ -37,6 +40,7 @@ public class NavigationIngredientsTest {
 
     @Test
     @DisplayName("Тест Переход к разделу Соусы")
+    @Description("Проверка перехода к разделу Соусы в разделе Конструктор")
     public void crossingSectionSaucesIsCorrectTest() {
         mainPage.showAvailableFillings();
         mainPage.showAvailableBuns();
@@ -46,6 +50,7 @@ public class NavigationIngredientsTest {
 
     @Test
     @DisplayName("Тест Переход к разделу Начинки")
+    @Description("Проверка перехода к разделу Начинки в разделе Конструктор")
     public void crossingSectionFillingsIsCorrectTest() {
         mainPage.showAvailableSauces();
         mainPage.showAvailableBuns();

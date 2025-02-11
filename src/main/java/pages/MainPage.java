@@ -13,8 +13,6 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 public class MainPage {
-    public static final String URL = "https://stellarburgers.nomoreparties.site/";
-
     private final SelenideElement createBurgerText = $(By.xpath("//h1[text()='Соберите бургер']"));
     private final SelenideElement bunsTab = $(By.xpath(".//span[text()='Булки']/.."));
     private final SelenideElement saucesTab = $(By.xpath("//span[text()='Соусы']/.."));

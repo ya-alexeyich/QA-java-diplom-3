@@ -7,7 +7,6 @@ import io.restassured.response.ValidatableResponse;
 import user.*;
 import static io.restassured.RestAssured.given;
 
-
 public class UserSteps extends StellarBurgersHttpClient {
 
     @Step("Создание пользователя API")

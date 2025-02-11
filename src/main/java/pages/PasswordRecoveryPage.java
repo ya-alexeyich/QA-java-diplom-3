@@ -8,7 +8,6 @@ import org.openqa.selenium.By;
 import static com.codeborne.selenide.Selenide.$;
 
 public class PasswordRecoveryPage {
-    public static final String URL = MainPage.URL + "forgot-password";
     private final SelenideElement loginLink = $(By.xpath("//a[@class='Auth_link__1fOlj']"));
 
     @Step("Клик по кнопке Войти на странице восстановить пароль")

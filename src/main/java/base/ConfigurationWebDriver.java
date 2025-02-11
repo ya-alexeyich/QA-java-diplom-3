@@ -1,5 +1,5 @@
 package base;
-import com.codeborne.selenide.Configuration;
+
 import com.codeborne.selenide.WebDriverRunner;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,23 +9,19 @@ import org.slf4j.LoggerFactory;
 
 public class ConfigurationWebDriver {
     private static final Logger logger = LoggerFactory.getLogger(ConfigurationWebDriver.class);
-    private static final String YANDEX_DRIVER = "src/main/resources/yandexdriver.exe";
 
     public static final String BROWSER_NAME = System.getProperty("browser", "chrome");
-//    mvn clean test -Dbrowser=yandex
 
     public static void setDriver(String browserName) {
-        Configuration.baseUrl = "https://stellarburgers.nomoreparties.site";
-        Configuration.holdBrowserOpen = false;
 
         switch (browserName.toLowerCase()) {
             case "chrome":
-                WebDriverManager.chromedriver().setup();
+                WebDriverManager.chromedriver().driverVersion("latest").setup();
                 initializeChromeDriver();
                 break;
             case "yandex":
                 WebDriverManager.chromedriver().driverVersion("latest").setup();
-                System.setProperty("webdriver.chrome.driver", YANDEX_DRIVER);
+                System.setProperty("webdriver.chrome.driver", "C:\\WebDriver\\bin\\yandexdriver.exe");
                 initializeChromeDriver();
                 break;
             default:
@@ -37,7 +33,7 @@ public class ConfigurationWebDriver {
     private static void initializeChromeDriver() {
         try {
             ChromeOptions options = new ChromeOptions();
-            options.addArguments("--remote-allow-origins=*");
+            options.addArguments("--remote-allow-origins=*", "start-maximized");
             WebDriverRunner.setWebDriver(new ChromeDriver(options));
             logger.info("Driver initialized successfully.");
         } catch (Exception e) {
